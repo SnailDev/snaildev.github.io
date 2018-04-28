@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">用于演示的博客</title>
+    <link rel='stylesheet' href='css/GitHub2.css' type='text/css'/>
+    <link rel='stylesheet' href='css/style.css' type='text/css'/>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Director/1.2.8/director.min.js"></script>   
+    <script src="https://cdn.bootcss.com/ractive/1.0.0-build-99/ractive.min.js"></script>    
+    <script src="https://cdn.bootcss.com/markdown.js/0.6.0-beta1/markdown.min.js"></script>    
+    <script src="assets/js/config.js"></script>
+    <script src="http://static.duoshuo.com/embed.js"></script>
+</head>
+<body>
+<div id="header"><h1><a href="#/" class="blog_title">用于演示的博客</a></h1>
+</div>
+<div id="container">
+    <center><img src="assets/images/loading.gif" alt="loading" class="loading"></center>
+</div>
+<script type="text/ractive" id="listTpl">
+    <ul class="postlist">
+        {{#posts}}
+        <li class="postlist"><a href="#post/{{number}}">{{title}}</a><span class="datetime">{{formatTime(created_at)}}</span></li>
+        {{/posts}}
+    </ul>
+    {{#prev}}<a href="#p{{page-1}}" class="prev">上一页</a>{{/prev}}
+    {{#next}}<a href="#p{{page+1}}" class="next">下一页</a>{{/next}}
+</script>
+<script type="text/ractive" id="detailTpl">
+    {{#post}}
+     <h1>{{title}}</h1>
+     <span class="create_at">发表于 {{formatTime(created_at)}}</span>
+     <div class="content">{{{toHTML(body)}}}</div>
+    {{/post}}
+</script>
+<script type="text/ractive" id="titleTpl">
+{{title}}
+</script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
