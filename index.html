@@ -15,7 +15,7 @@
     <div class="navbar">
         <div class="navbar-inner">
             <div class="nav-narrow">
-                <a class="brand" href="#/">
+                <a class="brand" href="/">
                     <span class="fa (alias)">蜗牛的主页</span>
                 </a>
                 <ul class="nav">
@@ -60,7 +60,7 @@
                             {{formatYear(created_at)}}
                     </div>
                 </div>
-                <h1>{{title}}</h1>
+                <h1>{{formatTitle(title)}}</h1>
 
                 <hr>
                 {{{toIntroHTML(body)}}}
@@ -81,7 +81,7 @@
                             {{formatYear(created_at)}}
                     </div>
             </div>
-            <h1>{{title}}</h1>
+            <h1>{{formatTitle(title)}}</h1>
             <hr>
             {{{toHTML(body)}}}
         </div>

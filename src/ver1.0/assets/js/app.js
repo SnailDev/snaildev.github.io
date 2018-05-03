@@ -132,6 +132,12 @@ helpers.formatYear = function (time) {
     return time.substr(0, 4);
 }
 
+helpers.formatTitle = function (title) {
+    if (title.index('_') > -1)
+        return title.split('_')[1];
+    return title;
+}
+
 function categories(page) {
     $('.span12').html('<center>功能完善中...</center>');
 }
