@@ -4,7 +4,7 @@ function index(page) {
     window._G = window._G || { post: {}, postList: {} };
     $('#title').html(_config['blog_name']);
     if (_G.postList[page] != undefined) {
-        $('#container').html(_G.postList[page]);
+        $('.span12').html(_G.postList[page]);
         return;
     }
 
@@ -17,7 +17,7 @@ function index(page) {
             // access_token : _config['access_token']
         },
         beforeSend: function () {
-            $('#container').html('<center><img src="src/ver1.0/assets/images/loading.gif" class="loading"></center>');
+            $('.span12').html('<center><img src="src/ver1.0/assets/images/loading.gif" class="loading"></center>');
         },
         success: function (data, textStatus, jqXHR) {
             var link = jqXHR.getResponseHeader("Link") || "";
@@ -39,7 +39,7 @@ function index(page) {
                 }
             });
             window._G.postList[page] = ractive.toHTML();
-            $('#container').html(window._G.postList[page]);
+            $('.span12').html(window._G.postList[page]);
 
             //将文章列表的信息存到全局变量中，避免重复请求
             for (i in data) {
@@ -77,9 +77,9 @@ function detail(id) {
     }
 
     if (_G.post[id].body != undefined) {
-        $('#container').html(_G.post[id].body);
+        $('.span12').html(_G.post[id].body);
         $('#title').html(_G.post[id].title);
-        //   toggleDuoshuoComments('#container', id);
+        //   toggleDuoshuoComments('.span12', id);
         return;
     }
     $.ajax({
@@ -88,7 +88,7 @@ function detail(id) {
             // access_token:_config['access_token']
         },
         beforeSend: function () {
-            $('#container').html('<center><img src="src/ver1.0/assets/images/loading.gif" alt="loading" class="loading"></center>');
+            $('.span12').html('<center><img src="src/ver1.0/assets/images/loading.gif" alt="loading" class="loading"></center>');
         },
         success: function (data) {
             var ractive = new Ractive({
@@ -97,7 +97,7 @@ function detail(id) {
             });
 
             window._G.post[id].body = ractive.toHTML();
-            $('#container').html(window._G.post[id].body);
+            $('.span12').html(window._G.post[id].body);
 
             var title = new Ractive({
                 template: '#titleTpl',
@@ -105,22 +105,35 @@ function detail(id) {
             });
             window._G.post[id].title = title.toHTML();
             $('#title').html(window._G.post[id].title);
-            // toggleDuoshuoComments('#container', id);
+            // toggleDuoshuoComments('.span12', id);
         }
     });
 
 }
 
 var helpers = Ractive.defaults.data;
+helpers.toIntroHTML = function (content) {
+    var converter = new showdown.Converter();
+    converter.setFlavor('github');
+    return converter.makeHtml(content.substr(0, 500) + '......');
+}
 helpers.toHTML = function (content) {
-    return markdown.toHTML(content, 'Maruku');
+    var converter = new showdown.Converter();
+    converter.setFlavor('github');
+    return converter.makeHtml(content);
 }
 helpers.formatTime = function (time) {
     return time.substr(0, 10);
 }
+helpers.formatMonth = function (time) {
+    return time.substr(5, 2) + '/' + time.substr(8, 2);
+}
+helpers.formatYear = function (time) {
+    return time.substr(0, 4);
+}
 
 function categories(page) {
-    $('#container').html('<center>功能完善中...</center>');
+    $('.span12').html('<center>功能完善中...</center>');
 }
 
 var routes = {
