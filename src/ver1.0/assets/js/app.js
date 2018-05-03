@@ -133,7 +133,7 @@ helpers.formatYear = function (time) {
 }
 
 helpers.formatTitle = function (title) {
-    if (title.index('_') > -1)
+    if (title.indexOf('_') > -1)
         return title.split('_')[1];
     return title;
 }
