@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>蜗牛的主页</title>
+    <meta name="author" content="SnailDev">
+    <link href="src/ver1.0/assets/libs/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="src/ver1.0/assets/libs/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="src/ver1.0/assets/libs/twitter/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="nav-narrow">
+                <a class="brand" href="/">
+                    <span class="fa (alias)">蜗牛的主页</span>
+                </a>
+                <ul class="nav">
+                    <li>
+                        <a href="#/categories">分类</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-narrow">
+        <div class="content">
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- <div id="container">
+                        <center> -->
+                            <img src="src/ver1.0/assets/images/loading.gif" alt="loading" class="loading">
+                        <!-- </center>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="card clearfix">
+            <span style="font-size:30px;" class="fa fa-github pull-left"></span>
+            <a href="https://github.com/snaildev/snaildev.github.io" style="display:inline-block;padding-right:80px;border-right:1px solid #bbb">fork me on GitHub</a>
+            <p class="pull-right">&copy; 2018 SnailDev with help from
+                <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+            </p>
+        </footer>
+    </div>
+    </div>
+
+    <script type="text/ractive" id="listTpl">
+        {{#posts}}
+            <div class="card">
+                <div class="date_label">
+                    <div class="day_month">
+                            {{formatMonth(created_at)}}
+                    </div>
+                    <div class="year">
+                            {{formatYear(created_at)}}
+                    </div>
+                </div>
+                <h1>{{formatTitle(title)}}</h1>
+
+                <hr>
+                {{{toIntroHTML(body)}}}
+                <div class="read_more">
+                    <a class="fa fa-link" href="#post/{{number}}">  查看全文…</a>
+                </div>
+            </div>
+        {{/posts}}
+    </script>
+    <script type="text/ractive" id="detailTpl">
+        {{#post}}
+        <div class="content card">
+            <div class="date_label">
+                    <div class="day_month">
+                            {{formatMonth(created_at)}}
+                    </div>
+                    <div class="year">
+                            {{formatYear(created_at)}}
+                    </div>
+            </div>
+            <h1>{{formatTitle(title)}}</h1>
+            <hr>
+            {{{toHTML(body)}}}
+        </div>
+        {{/post}}
+    </script>
+    <script type="text/ractive" id="titleTpl">
+        {{title}}
+    </script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="src/ver1.0/assets/libs/twitter/js/prettify.js"></script>
+    <script src="src/ver1.0/assets/libs/twitter/js/scrollHandler.js" defer="true"></script>
+    <script src="https://cdn.bootcss.com/Director/1.2.8/director.min.js"></script>
+    <script src="https://cdn.bootcss.com/ractive/1.0.0-build-99/ractive.min.js"></script>
+    <script src="https://cdn.bootcss.com/showdown/1.8.6/showdown.min.js"></script>
+    <script src="src/ver1.0/assets/js/config.js"></script>
+    <script src="src/ver1.0/assets/js/app.js"></script>
+</body>
+
+</html>
