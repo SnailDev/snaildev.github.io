@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://snaildev.github.io/article/spring-springboot-helloword.html</loc>
+    
+    <lastmod>2018-10-05T15:12:42.511Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://snaildev.github.io/article/spring-springboot-redis.html</loc>
     
-    <lastmod>2018-10-05T15:04:45.708Z</lastmod>
+    <lastmod>2018-10-05T15:12:38.599Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildev.github.io/article/spring-springboot-web.html</loc>
     
-    <lastmod>2018-10-04T00:18:33.735Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildev.github.io/article/spring-springboot-helloword.html</loc>
-    
-    <lastmod>2018-10-03T08:13:20.110Z</lastmod>
+    <lastmod>2018-10-05T15:12:34.278Z</lastmod>
     
   </url>
   
