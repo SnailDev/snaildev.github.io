@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://snaildev.github.io/article/spring-springboot-mybatis.html</loc>
+    
+    <lastmod>2018-10-14T14:18:31.145Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://snaildev.github.io/article/spring-springboot-jpa.html</loc>
     
-    <lastmod>2018-10-07T12:21:57.205Z</lastmod>
+    <lastmod>2018-10-07T12:35:33.713Z</lastmod>
     
   </url>
   
