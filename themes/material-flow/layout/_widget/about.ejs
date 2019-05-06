@@ -1,0 +1,27 @@
+<section itemprop="author" itemscope itemtype="https://schema.org/Person"
+    class="m_widget about">
+    <% if(config.avatar) { %>
+        <img itemprop="image" class="avatar waves-image" src="<%= url_for(config.avatar) %>" alt="<%= config.avatar %>" />
+    <%} %>
+    <div itemprop="name" class="header fa fa-user notranslate">
+        <%= config.author %>
+    </div>
+    <div class="content">
+        <div class="desc">
+            <%= config.description %>
+        </div>
+    </div>
+    <div class="content">
+        <meta itemprop="url" content="<%= config.url %>">
+        <% if (config.social) { %>
+        <div class="social-wrapper">
+        <% config.social.forEach(function(value, key) {
+            if (value.url && value.slug) { %>
+            <a itemprop="sameAs" href="<%= value.url %>" class="social <%= value.slug %>" target="_blank" rel="external">
+                <span class="fa fa-<%= value.slug %>"></span>
+            </a>
+        <% } }); %>
+        </div>
+        <% } %>
+    </div>
+</section>

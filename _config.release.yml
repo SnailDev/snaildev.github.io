@@ -1,0 +1,20 @@
+# Google Plugins
+google_analytics: <GOOGLE_ANALYTICS_ID>
+
+# Facebook SDK Support
+facebook_sdk:
+  app_id: <FBSDK_APP_ID>
+  fb_admin: <FBSDK_ADMIN_ID>
+
+## hexo-all-minifier
+html_minifier:
+  enable: true
+
+css_minifier:
+  enable: true
+
+js_minifier:
+  enable: true
+
+image_minifier:
+  enable: true

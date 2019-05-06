@@ -1,0 +1,43 @@
+<head itemscope itemtype="https://schema.org/WebSite">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="<%= config.author %>">
+  <meta name="copyright" content="© <%= date(Date.now(), 'YYYY') %> <%= config.author %>">
+  <meta name="url" content="<%= config.url %>">
+  <meta name="keywords" content="<%= keywords %>" />
+  <% if (config.facebook_sdk.enable && config.facebook_sdk.webmaster) { %>
+    <meta property="fb:admins" content="<%= config.facebook_sdk.fb_admin %>" />
+    <meta property="fb:app_id" content="<%= config.facebook_sdk.app_id %>" />
+  <% } %>
+  <meta itemprop="name" content="<%= config.title %>"/>
+  <meta itemprop="url" content="<%= config.url %>"/>
+  <meta itemprop="creator" content="<%= config.author %>"/>
+  <title><%= title %></title>
+  <link rel="apple-touch-icon" href="<%= config.icon %>">
+  <%- favicon_tag(config.favicon) %>
+  <%- feed_tag(config.feed.path, { title: config.title }) %>
+  <%- open_graph({
+    image: featured_image,
+    twitter_id: theme.twitter,
+    google_plus: config.google_plus,
+    fb_admins: config.facebook_sdk.fb_admin,
+    fb_app_id: config.facebook_sdk.app_id}) %>
+  <% if(theme.canonical) { %>
+    <link rel="canonical" href="<%= config.url %>/<%= page.canonical_path.replace("index.html", "") %>" />
+  <% } %>
+  <link rel="alternate" hreflang="<%= config.lang_code %>" href="<%= config.url %>/<%= page.canonical_path.replace("index.html", "") %>" />
+  <%- css("css/bundle.css?v=4") %>  
+  <script>
+    var progress = 0;
+    function addLoadingBarProgress(num) {
+      progress += num;
+      progress = Math.min(progress, 100);
+      document.getElementById("loading-bar").style.width = progress+"%";
+    };
+  </script>
+</head>

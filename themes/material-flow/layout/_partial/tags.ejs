@@ -1,0 +1,36 @@
+<%
+    let title = "Tags";
+%>
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+	<meta itemprop="name" content="Breadcrumb"/>
+	<meta itemprop="description" content="Breadcrumb for Tags"/>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="1" />
+		<a itemscope itemtype="https://schema.org/Thing"
+           itemprop="item" href="<%= config.url %>/tags/">
+            <meta itemprop="name" content="Tags"/>
+        </a>
+	</li>
+</ol>
+<div class="post white-box archive-page tags notranslate">
+    <section class="meta">
+        <h2 class="title">
+            <span class="fa fa-tags"></span>
+            <%= title %>
+        </h2>
+        <div class="count">
+            <%= site.tags.length %> tags in total
+        </div>
+    </section>
+    <section class="tagcloud">
+        <%- tagcloud(site.tags, {
+            min_font: 14, 
+            max_font: 32,
+            amount: 200,  
+            color: true, 
+            start_color: "gray", 
+            end_color: "black"
+        }) %>
+    </section>
+</div>

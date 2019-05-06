@@ -1,0 +1,24 @@
+<article itemscope itemtype="https://schema.org/BlogPosting" 
+  class="post reveal<%= (post.title) ? "" : "no-title" %>">
+  <%- partial("article-header", { post: post }) %>
+  <section class="article typo" >
+    <div itemprop="description">
+      <% if (!/<img src=.*/i.test(post.excerpt) && post.featured_image!=null) { %>
+        <p><img src="<%= post.featured_image %>" alt="<%= post.title %>"></p>
+      <% } %>
+      <%- post.excerpt || post.content %>
+    <div>
+    <% if (post.excerpt) { %>
+	  <div class="readmore">
+      <a itemprop="url" href="<%- url_for(post.path) %>">Read More</a>
+    </div>
+    <% } %>
+    <% if (post.tags && post.tags.length) { %>
+	  <div itemprop="keywords" class="full-width auto-padding tags notranslate">
+      <% post.tags.each(function(item){ %>
+        <a href="<%- url_for(item.path) %>"><%= item.name %></a>
+      <%})%>
+	  </div>
+    <% } %>
+  </section>
+</article>

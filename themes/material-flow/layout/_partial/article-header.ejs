@@ -1,0 +1,56 @@
+<header class="meta">
+    <meta itemprop="author" content="<%= page.author || config.author %>" />
+    <meta itemprop="dateModified" content="<%= date(post.updated, config.date_format) %>" />
+    <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="<%= config.url + url_for(post.path) %>"/>    
+    <meta itemprop="image" content="<%= config.url + (post.featured_image ? post.featured_image : config.avatar) %>" />
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="<%= config.url + config.icon %>" />
+            <meta itemprop="width" content="225" />
+            <meta itemprop="height" content="225" />
+        </div>
+        <meta itemprop="name" content="<%= page.author || config.author %>" />
+    </div>
+    <% if (page.title) { %>
+    <h1 itemprop="headline" class="title">
+      <a href="<%- url_for(post.path) %>">
+        <%= post.title %>
+      </a>
+    </h1>
+    <% } else if (post.title) { %>
+    <h2 itemprop="headline" class="title">
+        <a href="<%- url_for(post.path) %>">
+            <%= post.title %>
+        </a>
+    </h2>
+    <% } %>
+	<time itemprop="datePublished" datetime="<%= date(post.date, config.date_format) %>">
+    <%= date(post.date, config.date_format) %>
+    </time>
+    <% 
+        if (post.categories && post.categories.length) { 
+            var cates = [];
+            post.categories.forEach(function(cate) {
+                cates.push("<a itemprop='url' href='"+url_for(cate.path)+"'>" + cate.name + "</a>");
+            });
+    %>
+    <div itemprop="keywords" class="cats notranslate">
+        <%- cates.join(", ") %>
+    </div>
+    <% } %>
+    <% if(post.comments) { %>
+    <div class="info notranslate">
+        <i class="fa fa-comment-o"></i>
+        <a itemprop="discussionUrl" href="<%= url_for(post.path) %>#comments">
+            <span class="disqus-comment-count" data-disqus-identifier="<%= post.path %>"></span>
+        </a>
+    </div>
+    <% } %>
+    <div class="info notranslate">
+        <i class="fa fa-eye"></i>
+        <div class="pageviews" data-path="<%= url_for(post.path) %>"><span class="count">--</span> <span class="text">Pageviews</span></div>
+    </div>
+    <% if (page.title) { %>
+	<%- partial("social-media-buttons", { post: post }) %>	
+    <% } %>
+</header>

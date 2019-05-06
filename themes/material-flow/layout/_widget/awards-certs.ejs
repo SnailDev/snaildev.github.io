@@ -1,0 +1,22 @@
+<% if (config.awards_certs && config.awards_certs.length) { %>
+<section class="m_widget awards-certs">
+    <div class="header fa fa-certificate">Awards & Certs</div>
+    <div class="content notranslate">
+        <ul>
+            <% config.awards_certs.forEach(function(value, key) {
+                if (value.url && value.image) { %>
+            <li>
+                <label><%= (value.title||"") %></label>
+                <a target="_blank" href="<%= value.url %>">
+                    <img src="<%= value.image %>" 
+                        title="<%= (value.image_alt || value.title) %>" 
+                        alt="<%= (value.image_alt || value.title) %>" 
+                        width="<%= value.width %>" />
+                </a>
+                <span><%= (value.summary||"") %></span>
+            </li>
+            <% } }); %>
+        </ul>
+    </div>
+</section>
+<% } %>

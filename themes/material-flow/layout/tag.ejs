@@ -1,0 +1,57 @@
+<%
+    let title = "Tag : " + page.tag;
+    let posts = [];
+    let total = 0;
+    site.posts.sort("date", -1).each(function(post) {            
+        let display = false;
+        post.tags.forEach(function(tag) {
+            display = display || tag.name == page.tag;
+        });
+        if(!display) return;
+        posts.push(post);
+        total++;
+    });
+%>
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+	<meta itemprop="name" content="Breadcrumb"/>
+	<meta itemprop="description" content="Breadcrumb for <%= page.tag %>"/>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="1" />
+		<a itemscope itemtype="https://schema.org/Thing"
+           itemprop="item" href="<%= config.url %>/tags/">
+            <meta itemprop="name" content="Tags"/>
+        </a>
+	</li>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="2" />
+		<a itemscope itemtype="https://schema.org/Thing"
+           itemprop="item" href="<%= config.url + url_for(page.path) %>">
+            <meta itemprop="name" content="<%= page.tag %>"/>
+        </a>
+	</li>
+</ol>
+<div class="archive-page post white-box">
+    <section class="meta">
+        <h2 class="title">
+            <span class="fa fa-tag"></span>
+            <%= title %>
+        </h2>
+        <div class="count">
+            <%= total %> posts in <%= page.tag %>
+        </div>
+    </section>
+    <section class="archive">
+        <% posts.forEach(function(post) { %>
+        <div class="archive-item archive-post mark">
+            <a itemprop="url" href="<%= url_for(post.path) %>">
+                <time>
+                    <%= date(post.date, config.date_format) %>
+                </time>
+                <span class="title"><%= post.title %></span>
+            </a>
+        </div>
+        <% }); %>
+    </section>
+</div>

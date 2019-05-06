@@ -1,0 +1,78 @@
+<% 
+	let isShowWebsiteNameAsH2 = false;
+	if(page.title && !page.type) {
+		isShowWebsiteNameAsH2 = true;
+	}
+%>
+<header itemscope itemtype="https://schema.org/WPHeader" class="l_header">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<% if (isShowWebsiteNameAsH2){ %>
+			<h2 itemprop="headline" class="logo flat-box notranslate">
+				<a href="<%= url_for("/") %>" >
+					<%- config.title %>
+				</a>
+			</h2>
+			<% } else { %>
+			<h1 itemprop="headline" class="logo flat-box notranslate">
+				<a href="<%= url_for("/") %>" >
+					<%- config.title %>
+				</a>
+			</h1>
+			<% } %>
+			<div class="menu">
+				<ul class="h-list">
+					<% (theme.menu||[]).forEach(function(value){ %>
+						<li>
+							<a itemprop="url" class="flat-box nav-<%=value.slug%>" href="<%=url_for(value.url)%>">
+								<%= value.name %>
+							</a>
+						</li>
+					<%})%>
+				</ul>
+				<div class="underline"></div>
+			</div>
+			<% if (config.google_translate === true) { %>
+			<div class="google-translate">
+				<div id="google_translate_element"></div>
+			</div>
+			<% } %>
+			<% if (config.google_custom_search === true && page.type !== "search") { %>
+			<div class="m_search">
+				<form name="searchform" action="/search/" method="GET" class="form u-search-form">
+					<input name="q" type="text" class="input u-search-input" placeholder="Search" />
+					<i class="fa fa-search"></i>
+				</form>
+			</div>
+			<% } %>
+			<ul class="switcher h-list">
+				<% if (config.google_custom_search === true && page.type !== "search") { %>
+				<li class="s-search"><a itemprop="url" href="javascript:void(0)"><span class="fa fa-search flat-box"></span></a></li>
+				<% } %>
+				<li class="s-menu"><a itemprop="url" href="javascript:void(0)"><span class="fa fa-bars flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class="nav-sub container container--flex">
+			<span class="logo" class="flat-box" href="javascript:void(0)">
+				<%- config.title %>
+			</span>
+
+			<ul class="switcher h-list">
+				<li class="s-comment"><a itemprop="url" href="javascript:void(0)"><span class="fa fa-comment-o flat-box"></span></a></li>
+				<li class="s-top"><a itemprop="url" href="javascript:void(0)"><span class="fa fa-long-arrow-up flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside itemscope itemtype="https://schema.org/WPSideBar" class="menu-phone">
+	<nav itemscope itemtype="https://schema.org/SiteNavigationElement">
+		<% (theme.menu||[]).forEach(function(value, key) {
+			if (value.url && value.slug && value.name) { 
+		%>
+		<a itemprop="url" href="<%= url_for(value.url) %>" class="nav-<%= value.slug %> nav">
+			<%= value.name %>
+		</a>
+		<% } }); %>
+	</nav>
+</aside>

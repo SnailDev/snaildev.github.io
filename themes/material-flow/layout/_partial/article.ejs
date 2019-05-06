@@ -1,0 +1,94 @@
+<script>
+	window.subData = {
+		title: "<%= post.title %>",
+		tools: true
+	};
+</script>
+<%
+	if (post.categories && post.categories.length) { 
+		post.categories.forEach(function(cate) {
+%>
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+	<meta itemprop="name" content="Breadcrumb"/>
+	<meta itemprop="description" content="Breadcrumb for <%= page.title %>"/>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="1" />
+		<a itemscope itemtype="https://schema.org/Thing"
+		   itemprop="item" href="<%= config.url + url_for(cate.path) %>">
+			<meta itemprop="name" content="<%= cate.name %>"/>
+		</a>
+	</li>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="2" />
+		<a itemscope itemtype="https://schema.org/Thing"
+           itemprop="item" href="<%= config.url + url_for(post.path) %>">
+			<meta itemprop="name" content="<%= page.title %>"/>
+			<meta itemprop="image" content="<%= config.url + (post.featured_image ? post.featured_image : config.avatar) %>" />
+		</a>
+	</li>
+</ol>
+<% }); } %>
+<article itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting"
+	id="<%= post.layout %>-<%= post.slug %>"
+  class="post white-box article-type-<%= post.layout %>">
+	<%- partial("article-header", { post: post }) %>	
+	<section class="article typo">
+  	<div itemprop="articleBody" class="article-entry">
+    	<%- post.content %>
+  	</div>
+
+	<div class="art-item-footer">	
+	<% if (post.tags && post.tags.length) { %>
+		<div itemprop="keywords" class="article-tags tags notranslate">
+		<% post.tags.each(function(item){ %>
+			<a href="<%- url_for(item.path) %>"><%=item.name %></a>
+		<%})%>
+		</div>
+    <% } %>
+	<div class="social-buttons notranslate">
+		<% if(config.facebook_sdk.enable && config.facebook_sdk.like_button) { %>
+		<div class="social-button fb">
+			<div class="fb-like" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+		</div>
+		<% } %>
+		<div class="social-button linkedin">
+			<script src="//platform.linkedin.com/in.js" async> lang: en_US</script>
+			<script type="IN/Share" data-url="<%= config.url + url_for(post.path) %>" data-counter="right"></script>
+		</div>
+		<div class="social-button google">
+			<script src="//apis.google.com/js/platform.js" async defer></script>
+			<div class="g-plus" data-action="share" data-href="<%= config.url + url_for(post.path) %>"></div>
+		</div>
+	</div>
+
+	<% if(post.prev || post.next){ %>
+		<div>
+		<% if(post.prev && post.prev.title){ %>
+			<span class="art-item-left">
+				<i class="fa fa-angle-left"></i>next：
+				<a itemprop="url" href="<%=url_for(post.prev.path)%>" rel="next"  title="<%= post.prev.title %>">
+					<%= post.prev.title %> 
+				</a>
+			</span>
+		<% } %>
+		<% if(post.next && post.next.title){ %>
+			<span class="art-item-right">prev：
+				<a itemprop="url" href="<%=url_for(post.next.path) %>" rel="prev"  title="<%= post.next.title %>">
+					<%=post.next.title  %>
+				</a>
+				<i class="fa fa-angle-right"></i>
+			</span>
+		<%} %>
+		</div>
+	<%} %>
+	</div>
+
+	</section>
+</article>
+<% if (page.comments && config.disqus_shortname){ %>
+<section itemprop="comment" itemscope itemtype="https://schema.org/Comment" id="comments">
+	<div id="disqus_thread"></div>
+</section>
+<% } %>

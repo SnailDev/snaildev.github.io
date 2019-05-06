@@ -1,0 +1,105 @@
+title: SnailDev's Blog
+subtitle: 简单不想写，太难不会写。
+description: coding is everything in my life.
+author: SnailDev
+language: default
+timezone: Asia/Shanghai
+avatar: /images/avatar.jpg
+favicon: /favicon.ico
+icon: /images/icon.png
+lang_code: zh-cn
+keywords: >-
+  SnailDev's Blog,Java,Spring,Spring MVC,Spring Boot,JVM,ASP.NET Core,ASP.NET
+  MVC,ASP.NET Web API 2,jQuery,C#,JavaScript,Jenkins
+domain: snaildev.github.io
+url: 'https://snaildev.github.io'
+root: /
+permalink: 'article/:title.html'
+permalink_defaults: null
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: ':lang'
+skip_render: null
+new_post_name: ':title.md'
+default_layout: draft
+titlecase: false
+external_link: true
+filename_case: 1
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: '  '
+default_category: uncategorized
+category_map: null
+tag_map: null
+date_format: YYYY-MM-DD
+time_format: 'HH:mm:ss'
+per_page: 10
+pagination_dir: page
+theme: material-flow
+social:
+  - slug: github
+    url: 'https://github.com/snaildev'
+  - slug: rss
+    url: /atom.xml
+pageviews_api: 'https://gifmaker.develophelper.com/pageviews'
+disqus_shortname: snaildevs-blog
+google_translate: true
+google_custom_search: true
+facebook_sdk:
+  enable: false
+  like_button: false
+  webmaster: false
+  app_id: <FBSDK_APP_ID>
+  fb_admin: <FBSDK_ADMIN_ID>
+facebook_fans:
+  enable: false
+  name: ''
+  url: null
+marked:
+  breaks: false
+sitemap:
+  path: sitemap.xml
+nofollow:
+  enable: true
+  exclude:
+    - github.com
+    - www.cnblogs.com
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub: null
+html_minifier:
+  enable: true
+  ignore_error: false
+  exclude: null
+css_minifier:
+  enable: true
+  exclude:
+    - '*.min.css'
+js_minifier:
+  enable: true
+  mangle: true
+  exclude:
+    - '*.min.js'
+image_minifier:
+  enable: true
+  interlaced: true
+  multipass: true
+  optimizationLevel: 4
+  pngquant: true
+  progressive: true
+links:
+  - name: 博客园-SnailDev
+    url: 'https://www.cnblogs.com/snaildev'
+google_analytics: <GOOGLE_ANALYTICS_ID>

@@ -1,0 +1,100 @@
+<%
+    let title = "Archives";
+    let postCounter = {};
+    let posts = site.posts.filter(function(post) {
+        let ignore = true;
+        let year = date(post.date, "YYYY");
+        let month = date(post.date, "MM");
+        if(page.year && page.year != year){
+            ignore = false;
+        } else if(page.month && page.month != month){
+            ignore = false;
+        }
+        postCounter[year] = (postCounter[year]||0)+1;
+        postCounter[year+month] = (postCounter[year+month]||0)+1;        
+        return ignore;
+    }).sort("date", -1);
+
+    function padLeft(str, lenght = 2){
+        if(str.length >= lenght)
+            return str;
+        else
+            return padLeft("0" + str,lenght);
+    }
+%>
+<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+	<meta itemprop="name" content="Breadcrumb"/>
+	<meta itemprop="description" content="Breadcrumb for Archives<%= (page.year ? " " + page.year : "") + (page.year && page.month ? "/" + padLeft(page.month):"") %>"/>
+	<li itemprop="itemListElement" itemscope
+      itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="1" />
+		<a itemscope itemtype="https://schema.org/Thing"
+       	   itemprop="item" href="<%= config.url %>/archives/">
+			<meta itemprop="name" content="Archives"/>
+		</a>
+	</li>
+    <% if(page.year) { %>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="2" />
+		<a itemscope itemtype="https://schema.org/Thing"
+		   itemprop="item" href="<%= config.url + '/archives/' + page.year %>">
+			<meta itemprop="name" content="<%= page.year %>"/>
+		</a>
+	</li>
+    <% } if(page.year && page.month) { %>
+	<li itemprop="itemListElement" itemscope
+        itemtype="https://schema.org/ListItem">
+		<meta itemprop="position" content="3" />
+		<a itemscope itemtype="https://schema.org/Thing"
+           itemprop="item" href="<%= config.url + '/archives/' + page.month %>">
+			<meta itemprop="name" content="<%= padLeft(page.month) %>"/>
+		</a>
+	</li>
+    <% } %>
+</ol>
+<div class="archive-page post white-box">
+    <section class="meta">
+        <h2 class="title">
+            <span class="fa fa-archive"></span>
+            <%= title %>
+        </h2>
+        <div class="count">
+            <%= posts.length %> posts in total
+        </div>
+    </section>
+    <section class="archive">
+        <%
+        let year = -1, month = -1, postid = -1;
+        posts.each(function(post) {
+            post.year = date(post.date, "YYYY");
+            post.month = date(post.date, "MM");
+            if (post.year && post.year !== year) {
+                year = post.year;
+        %>
+        <div class="archive-item archive-year">
+            <a itemprop="url" href="<%= url_for('/archives/' + year + '/') %>" >
+            <%= year %>
+            <span class="count">(<%= postCounter[year] %>)</span>
+            </a>
+        </div>
+        <% } 
+            if (post.month && post.month !== month) { 
+                month = post.month;
+        %>
+        <div class="archive-item archive-month">
+            <a itemprop="url" href="<%= url_for('/archives/' + year + '/' + month + '/') %>" >
+            <%= year + "-" + month %>
+            <span class="count">(<%= postCounter[year+month] %>)</span>
+            </a>
+        </div>
+        <% } %>
+        <div class="archive-item archive-post mark">
+            <a itemprop="url" href="<%= url_for(post.path) %>">
+                <time><%= date(post.date, "MM-DD") %></time>
+                <span class="title"><%= post.title %></span>
+            </a>
+        </div>
+        <% }); %>
+    </section>
+</div>

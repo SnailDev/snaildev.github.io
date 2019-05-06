@@ -1,0 +1,64 @@
+<%
+  function padLeft(str, lenght = 2){
+      if(str.length >= lenght)
+          return str;
+      else
+          return padLeft("0" + str,lenght);
+  }
+
+  let title = page.title;
+  if (is_archive()) {
+    title = "Archives";
+    if (is_month())
+      title += ": " + page.year + "/" + padLeft(page.month);
+    else if (is_year())
+      title += ": " + page.year;
+  } else if (is_category()) {
+    title = "Category: " + page.category;
+  } else if (is_tag()) {
+    title = "Tag: " + page.tag;
+  }
+  title = title ? (title + " | " + config.title) : config.title;
+
+  let keywords = config.keywords;
+  if(page && page.keywords) {
+    keywords = (page.keywords||[]).join(",");
+  } else if (page.tags && page.tags.length) {
+    keywords = page.tags.map(function(tag){ return tag.name; }).join(",");
+  }
+
+  let featured_image = null;
+  if(page && page.featured_image){
+    featured_image = page.featured_image;
+  }
+%>
+<!DOCTYPE html>
+<html lang="<%= config.lang_code %>" 
+  xml:lang="<%= config.lang_code %>"
+  xmlns="https://www.w3.org/1999/xhtml"
+  xmlns:og="http://ogp.me/ns#" 
+  xmlns:fb="https://www.facebook.com/2008/fbml">
+  <%- partial("_partial/head", { title: title, keywords: keywords, featured_image: featured_image }) %>
+  <body itemscope itemtype="https://schema.org/Blog">
+    <%- partial("_partial/loading") %>
+    <script>addLoadingBarProgress(20);</script>
+    <%- partial("_partial/header", { cache: !config.relative_link }) %>
+    <script>addLoadingBarProgress(20);</script>
+    <div class="l_body">
+      <div class="container clearfix">
+        <div class="l_main">
+          <%- body %>
+        </div>
+        <aside itemscope itemtype="https://schema.org/WPSideBar" class="l_side">
+          <%- partial("_partial/side") %>
+        </aside>
+        <script>addLoadingBarProgress(20);</script>
+      </div>
+    </div>
+    <%- partial("_partial/footer", { cache: !config.relative_link }) %>
+    <%- partial("_partial/scripts") %>
+    <%- partial("_partial/google-analytics") %>
+    <%- partial("_partial/facebook-sdk") %>
+    <script>addLoadingBarProgress(20);</script>
+  </body>
+</html>

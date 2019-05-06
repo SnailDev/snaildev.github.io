@@ -1,0 +1,35 @@
+<footer itemscope itemtype="https://schema.org/WPFooter"
+  id="footer" class="clearfix notranslate">
+  <div>
+    Powered by <a href="https://hexo.io/" class="codename">Hexo</a> - 
+    Theme <a href="https://github.com/stkevintan/hexo-theme-material-flow" class="codename" rel="external nofollow noopener noreferrer" target="_blank">MaterialFlow</a>
+  </div>
+
+  <div>
+    <span>
+      © <span itemprop="copyrightYear"><%= date(Date.now(), 'YYYY') %></span> 
+        <span itemprop="copyrightHolder"><%= config.author %></span>
+    </span>
+
+    <% if (config.social) { %>
+      <% config.social.forEach(function(value, key) {
+            if (value.url && value.slug) { %>
+        <a itemprop="url" href="<%= value.url %>" class="social <%= value.slug %>"
+          target="_blank" rel="external">
+          <span class="fa fa-<%= value.slug %>"></span>
+        </a>
+      <% } }); %>
+    <% } %>
+  </div>
+
+  <div>
+    <span id="totalPageviews">Total Pageviews: <span class="count">--<span></span>
+  </div>
+  
+  <div>
+    <a itemprop="license" class="license" rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+      <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+    </a>
+  </div>
+</footer>
+

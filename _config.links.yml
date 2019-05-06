@@ -1,0 +1,11 @@
+# Friends Link
+links:
+- name: 博客园-SnailDev
+  url: https://www.cnblogs.com/snaildev
+
+
+# hexo-autonofollow
+nofollow:
+  exclude:
+  - github.com
+  - www.cnblogs.com
