@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://snaildev.github.io/article/smnpo-maven-repository-settings.html</loc>
+    
+    <lastmod>2019-05-08T03:52:30.774Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildev.github.io/article/smnpo-git-use-github-gitlab.html</loc>
+    
+    <lastmod>2019-05-07T03:16:53.926Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://snaildev.github.io/article/smnpo-git-use-operate-batch.html</loc>
     
     <lastmod>2019-05-07T03:09:05.836Z</lastmod>
@@ -26,20 +40,6 @@
     <loc>https://snaildev.github.io/article/spring-springboot-jpa.html</loc>
     
     <lastmod>2019-05-07T02:54:49.484Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildev.github.io/article/smnpo-maven-repository-settings.html</loc>
-    
-    <lastmod>2019-05-07T01:48:28.048Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildev.github.io/article/smnpo-git-use-github-gitlab.html</loc>
-    
-    <lastmod>2019-05-06T09:10:33.162Z</lastmod>
     
   </url>
   
